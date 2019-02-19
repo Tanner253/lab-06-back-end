@@ -30,17 +30,40 @@ function searchToLatLong(query) {
   return location;
 }
 
+// function to get weather data
+function Weather(day){
+  this.forecast = day.summary;
+  this.time = new Date(day.time*1000).toString().slice(0,15);
+}
+
+function getWeather(){
+  const darkskyData = require('./data/darksky.json');
+  let weatherSummaries = [];
+
+  darkskyData.daily.data.forEach(day => {
+    weatherSummaries.push(new Weather(day));
+  })
+  return weatherSummaries;
+}
+
+// function to handle errors
+function handleError(err, res) {
+  console.error(err);
+  if (res) res.status(500).send('Sorry, something went wrong');
+}
+
 // API routes
 app.get('/location', (request, response) => {
   const locationData = searchToLatLong(request.query.data);
   response.send(locationData);
 })
 
-// Error handler
-function handleError(err, res) {
-  console.error(err);
-  if (res) res.status(500).send('Sorry, something went wrong');
-}
+app.get('/weather', (request, response) => {
+  const weatherData = getWeather();
+  response.send(weatherData);
+})
+
+app.use('*', (request, response) => response.send(handleError()));
 
 //Make sure server is listening for requests
 app.listen(PORT, () => console.log(`App is up on ${PORT}`));
