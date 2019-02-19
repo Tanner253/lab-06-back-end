@@ -63,7 +63,7 @@ app.get('/weather', (request, response) => {
   response.send(weatherData);
 })
 
-app.use('*', (request, response) => response.send(handleError()));
+app.use('*', (err, res) => handleError(err, res));
 
 //Make sure server is listening for requests
 app.listen(PORT, () => console.log(`App is up on ${PORT}`));
