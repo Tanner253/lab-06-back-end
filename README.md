@@ -26,3 +26,5 @@ api's
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
+
+02-19-2019 10:10am - Application now has all initial file structure w/ proper dependencies setup
