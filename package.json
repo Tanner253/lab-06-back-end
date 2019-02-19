@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Tanner253/lab-06-back-end#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4"
   }

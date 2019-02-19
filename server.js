@@ -6,11 +6,13 @@ require('dotenv').config();
 
 //appplication dependencies
 const express = require('express');
+const cors = require('cors');
 
 
 //application setup
 const PORT = process.env.PORT || 3000;
 const app = express();
+app.use(cors());
 
 // function to search lat/lon
 function Location(query, res){
